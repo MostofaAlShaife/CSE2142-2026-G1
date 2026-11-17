@@ -29,9 +29,7 @@ public class EmployeeManager {
         if (args[0].equals(Constants.LIST_FLAG)) {
             System.out.println(Constants.MSG_LOADING_DATA);
             try {
-                String line = readEmployeeFile();
-                String employees[] = line.split(Constants.COMMA);
-                for (String employee : employees) {
+                for (String employee : readEmployeeFile().split(Constants.COMMA)) {
                     System.out.println(employee);
                 }
             } catch (Exception exception) {
@@ -40,32 +38,25 @@ public class EmployeeManager {
         } else if (args[0].equals(Constants.RANDOM_FLAG)) {
             System.out.println(Constants.MSG_LOADING_DATA);
             try {
-                String line = readEmployeeFile();
-                System.out.println(line);
-                String employees[] = line.split(Constants.COMMA);
-                Random random = new Random();
-                int randomIndex = random.nextInt(employees.length);
-                System.out.println(employees[randomIndex]);
+                String employees[] = readEmployeeFile().split(Constants.COMMA);
+                System.out.println(employees[new Random().nextInt(employees.length)]);
             } catch (Exception exception) {
             }
             System.out.println(Constants.MSG_DATA_LOADED);
         } else if (args[0].contains(Constants.ADD_FLAG)) {
             System.out.println(Constants.MSG_LOADING_DATA);
             try {
-                String newEmployee = args[0].substring(1);
-                writeEmployeeFile(Constants.COMMA + Constants.SPACE + newEmployee, true);
+                writeEmployeeFile(Constants.COMMA + Constants.SPACE + args[0].substring(1), true);
             } catch (Exception exception) {
             }
             System.out.println(Constants.MSG_DATA_LOADED);
         } else if (args[0].contains(Constants.SEARCH_FLAG)) {
             System.out.println(Constants.MSG_LOADING_DATA);
             try {
-                String line = readEmployeeFile();
-                String employees[] = line.split(Constants.COMMA);
+                String employees[] = readEmployeeFile().split(Constants.COMMA);
                 boolean found = false;
-                String searchTarget = args[0].substring(1);
                 for (int index = 0; index < employees.length && !found; index++) {
-                    if (employees[index].equals(searchTarget)) {
+                    if (employees[index].equals(args[0].substring(1))) {
                         System.out.println(Constants.MSG_EMPLOYEE_FOUND);
                         found = true;
                     }
@@ -76,8 +67,7 @@ public class EmployeeManager {
         } else if (args[0].contains(Constants.COUNT_FLAG)) {
             System.out.println(Constants.MSG_LOADING_DATA);
             try {
-                String line = readEmployeeFile();
-                char[] characters = line.toCharArray();
+                char[] characters = readEmployeeFile().toCharArray();
                 boolean inWord = false;
                 int count = 0;
                 for (char character : characters) {
@@ -97,11 +87,9 @@ public class EmployeeManager {
         } else if (args[0].contains(Constants.UPDATE_FLAG)) {
             System.out.println(Constants.MSG_LOADING_DATA);
             try {
-                String line = readEmployeeFile();
-                String employees[] = line.split(Constants.COMMA);
-                String targetEmployee = args[0].substring(1);
+                String employees[] = readEmployeeFile().split(Constants.COMMA);
                 for (int index = 0; index < employees.length; index++) {
-                    if (employees[index].equals(targetEmployee)) {
+                    if (employees[index].equals(args[0].substring(1))) {
                         employees[index] = Constants.UPDATED_TEXT;
                     }
                 }
@@ -112,11 +100,9 @@ public class EmployeeManager {
         } else if (args[0].contains(Constants.DELETE_FLAG)) {
             System.out.println(Constants.MSG_LOADING_DATA);
             try {
-                String line = readEmployeeFile();
-                String employees[] = line.split(Constants.COMMA);
-                String targetEmployee = args[0].substring(1);
+                String employees[] = readEmployeeFile().split(Constants.COMMA);
                 List<String> employeeList = new ArrayList<>(Arrays.asList(employees));
-                employeeList.remove(targetEmployee);
+                employeeList.remove(args[0].substring(1));
                 writeEmployeeFile(String.join(Constants.COMMA, employeeList), false);
             } catch (Exception exception) {
             }
