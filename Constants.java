@@ -19,5 +19,6 @@ public class Constants {
     public static final String MSG_DATA_UPDATED = "Data Updated.";
     public static final String MSG_DATA_DELETED = "Data Deleted.";
     public static final String MSG_EMPLOYEE_FOUND = "Employee found!";
+    public static final String MSG_EMPLOYEE_NOT_FOUND = "Employee not found!";
     public static final String UPDATED_TEXT = "Updated";
 }

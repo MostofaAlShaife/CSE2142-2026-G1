@@ -54,12 +54,16 @@ public class EmployeeManager {
             System.out.println(Constants.MSG_LOADING_DATA);
             try {
                 String employees[] = readEmployeeFile().split(Constants.COMMA);
-                boolean found = false;
-                for (int index = 0; index < employees.length && !found; index++) {
-                    if (employees[index].equals(args[0].substring(1))) {
+                String target = args[0].substring(1);
+                int index = 0;
+                for (index = 0; index < employees.length; index++) {
+                    if (employees[index].trim().equals(target)) {
                         System.out.println(Constants.MSG_EMPLOYEE_FOUND);
-                        found = true;
+                        break;
                     }
+                }
+                if (index == employees.length) {
+                    System.out.println(Constants.MSG_EMPLOYEE_NOT_FOUND);
                 }
             } catch (Exception exception) {
             }
