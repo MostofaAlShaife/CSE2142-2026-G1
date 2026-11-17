@@ -14,6 +14,7 @@ public class Constants {
     
     // Output messages
     public static final String ERROR_ARG_COUNT = "Error:only one argument please";
+    public static final String ERROR_INVALID_ARG = "Error: Invalid argument passed.";
     public static final String MSG_LOADING_DATA = "Loading data ...";
     public static final String MSG_DATA_LOADED = "Data Loaded.";
     public static final String MSG_DATA_UPDATED = "Data Updated.";
